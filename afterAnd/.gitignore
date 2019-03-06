@@ -1,0 +1,10 @@
+#新增规则
+thinkphp/
+runtime/
+vendor/
+.idea/
+application/database.php
+data/
+composer.lock
+public/ueditor/
+public/uploads/

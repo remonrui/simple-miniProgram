@@ -1,0 +1,182 @@
+{extend name="base/common"}
+
+{block name="style"}
+<link href="/static/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet">
+{/block}
+
+{block name="page-header"}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>业务管理</h2>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Admin</a></li>
+            <li class="active"><strong>Service</strong></li>
+        </ol>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+{/block}
+
+{block name="main"}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>业务列表</h5>
+                    <div class="ibox-tools">
+                        {neq name="pid" value=""}
+                        <a href="javascript:window.history.go(-1);" class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="返回"><i class="fa fa-reply"></i> 返回上一级</a>
+                        {/neq}
+                        <a data-toggle="modal" class="btn btn-xs btn-primary" href="#modal-form" onclick="addMenu({$pid|default=0})">添加菜单</a>
+                    </div>
+                </div>
+                <div id="modal-form" class="modal fade" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form class="form-horizontal" method="post" action="{:Url('Section/add')}">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h3 class="modal-title text-center tt"></h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group"><label class="col-sm-2 control-label">标题</label>
+                                        <div class="col-sm-10"><input type="text" placeholder="项目名称" class="form-control" required="" name="title"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">图片:</label>
+                                        <div class="col-sm-10">
+                                            <input id="input-file" type="file" class="file">
+                                            <sapn>
+                                                <img name="img" id="img"
+                                                     style="max-height: 200px; max-width: 200px" src=""/>
+                                            </sapn>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">介绍:</label>
+                                        <div class="col-sm-10">
+                                            <textarea name="content" class="form-control" id="content"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">排序</label>
+                                        <div class="col-sm-10"><input type="number" class="form-control" required="" name="sort" value="0"></div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">上级菜单</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" name="pid">
+                                                {volist name="Menus" id="menu"}
+                                                <option value="{$menu.id}">{$menu.title_show}</option>
+                                                {/volist}
+                                            </select></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary ajax-post" type="submit" target-form="form-horizontal">添加</button>
+                                    <input type="hidden" name="id" value="">
+                                    <input type="hidden" name="img" value="">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th><input class="i-checks check-all" type="checkbox"></th>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>上级菜单</th>
+                                <th>排序</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {volist name="list" id="vo"}
+                            <tr class="menu_{$vo.id}">
+                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                <td>{$vo.id}</td>
+                                <td><a href="{:Url('index?pid='.$vo['id'])}">{$vo.title}</a></td>
+                                <td>{$vo.up_title|default='无'}</td>
+                                <td>{$vo.sort}</td>
+                                <td>
+                                    <a data-toggle="modal" title="编辑" href="#modal-form" class="btn-sm btn-success" onclick="editMenu({$vo.id})">编辑</a>
+                                    <a href="{:Url('del?id='.$vo['id'])}" class="confirm ajax-del btn-sm btn-danger" title="删除">删除</a>
+                                </td>
+                            </tr>
+                            {/volist}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="/static/bootstrap-fileinput/themes/fa/fa.js"></script>
+<script src="/static/bootstrap-fileinput/js/locales/zh.js"></script>
+<script>
+    function addMenu(pid) {
+        $(".tt").html("新增项目");
+        $(".form-horizontal")[0].reset();
+        $("#img").attr('src','');
+        $("#content").html('');
+        $("select[name='pid']").val(pid);
+    }
+    function editMenu(menuId) {
+        $.ajax({
+            type: "get",
+            url: "{:Url('Section/getInfo')}",
+            data: {id:menuId},
+            //dataType: "json",
+            success: function(response){
+                var data = JSON.parse(response);
+                $(".tt").html("编辑项目");
+                $("input[name='id']").val(data.id);
+                $("input[name='title']").val(data.title);
+                $("#img").attr('src',data.img);
+                $("input[name='img']").val(data.img);
+                $("#content").html(data.content);
+                $("input[name='sort']").val(data.sort);
+                $("select[name='pid']").val(data.pid);
+                $(".form-horizontal").attr('action', '{:Url("Section/edit")}');
+            }
+        })
+    }
+
+    $(document).ready(function(){
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green'
+        });
+    });
+
+    $("#input-file").fileinput({
+        showPreview: false,
+        language: 'zh', //设置语言
+        uploadUrl: '{:Url("common/Upload/picture")}', //上传的地址
+        allowedFileExtensions: ['png', 'jpg', 'gif', 'png', 'jpeg'],
+        maxFileSize: 1024 * 200,
+        showUpload:false,
+        showRemove:false,
+    }).on("filebatchselected", function (event, files) {
+        $(this).fileinput("upload");
+    }).on('fileuploaded', function (event, data, previewId, index) {
+        var response = $.parseJSON(data.response);
+        if (response.code == 1) {
+            $("input[name='img']").val(response.data);
+            var pic = document.getElementById("img");
+            pic.src = response.data;
+
+        } else {
+            updateAlert(response.msg, 'warning');
+        }
+    });
+</script>
+{/block}

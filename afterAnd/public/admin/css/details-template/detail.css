@@ -1,0 +1,119 @@
+@charset "utf-8";
+body {
+    background-color: #F8F8F8;
+}
+/*title*/
+.article {
+    width: 100%;
+    padding-left: 15px;
+    padding-right:15px;
+    padding-top:15px;
+}
+
+.article .title {
+    text-align: center;
+}
+.article .title p{
+    color: #595959;
+    font-size: 19px;
+    line-height: 2;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/*publish & time*/
+.article .note {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:13px 0;
+    border-bottom: 1px solid #E7E7E7;
+}
+span.img-icon {
+    font-size: 12px;
+    color: #a5a5a5;
+    background: no-repeat left;
+    padding-left:20px;
+    background-size: 15px 15px;
+}
+
+.article .note span.img-icon.icon-person{
+    background-image: url('/index/images/detail/icon-person.png');
+    flex:1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.article .note span.img-icon.icon-time{
+    background-image: url('/index/images/detail/icon-time.png')
+}
+
+
+.article .message {
+    margin-bottom: 18px;
+    padding:15px 0;
+    border-bottom: 1px solid #c3c3c3;
+}
+.article .message div {
+    width: 100%;
+    height: 34px;
+    padding-left: 22px;
+    line-height: 34px;
+    font-size: 14px;
+}
+.article .message div span {
+    display: inline-block;
+    width: 100%;
+    padding-right: 15px;
+    border-bottom: 1px dashed #eeeeee;
+}
+.article .message div:nth-child(1) {
+    background: url("/index/images/learn/icon-time.png")left center no-repeat;
+    background-size: 14px 14px;
+}
+.article .message div:nth-child(2) {
+    background: url("/index/images/learn/icon-address.png") left center no-repeat;
+    background-size:  14px 14px;
+}
+
+.article .message div:nth-child(3) span {
+    padding-right: 0!important;
+}
+.article .message div:nth-child(3) {
+    background: url("/index/images/learn/icon-people.png")left center  no-repeat;
+    background-size:  14px 14px;
+}
+.article .message div:nth-child(3)>a{
+    color: #333;
+}
+.article .message div:nth-child(4) {
+    background: url("/index/images/learn/icon-host.png")left center no-repeat;
+    background-size: 14px 14px;
+}
+.article .message div span:nth-child(5) {
+    border-bottom: none;
+}
+
+
+/*article content */
+.article-content p,.article-content p span,.article-content{
+    font-size: 15px;
+    color: #333;
+}
+.article .content * {
+    max-width: 100%;
+    line-height: 1.5;
+}
+.article .content {
+    width: 100%;
+    overflow: hidden;
+    padding-top: 18px;
+}
+.article .content img {
+    display: inline-block;
+    max-width: 100%!important;
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+}
+

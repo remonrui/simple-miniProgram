@@ -1,0 +1,117 @@
+
+.fd-cover {
+    z-index: 2;
+    width: 100%;
+    height: 420rpx;
+    border-radius: 8rpx;
+    box-shadow: 0 30rpx 150rpx rgba(255, 255, 255, .3)
+}
+
+.fd-bd {
+    padding: 0 40rpx 40rpx;
+}
+
+.fd-bd-title {
+    padding-left: 20rpx;
+    margin-top: 40rpx;
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #444;
+    border-left: 10rpx solid #47a86c;
+}
+
+.left {
+    float:left; 
+    padding-left: 20rpx;
+    margin-top: 40rpx;
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #444;
+    border-left: 10rpx solid #47a86c;
+}
+.center{
+  float: left;
+  padding-left: 40%;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.right{
+  float: left;
+  padding-left: 10%;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.fd-bd-intro {
+    text-align: justify;
+    line-height: 1.5;
+    color: #666;
+}
+
+.operation{
+  justify-content: space-between;
+  padding: 0 0 0 60rpx;
+  height: 180rpx;
+}
+
+.section{
+  position: fixed;
+  bottom: 0;
+  height: 250rpx;
+  border-top: solid 1px #ebebeb;
+  background: #ffffff;
+  width: 670rpx;
+  padding: 20rpx 40rpx;
+}
+
+.message-title {
+    padding-left: 20rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #444;
+    border-left: 10rpx solid #47a86c;
+}
+
+.operation-btn{
+    display: flex;
+    flex: 1;
+}
+.operation image{
+    display: flex;
+    width: 50rpx;
+    height: 50rpx;
+    bottom: 0rpx;
+}
+
+.operation-btn text{
+    display: flex;
+    font-size: 14rpx;
+    color: #bebebe;
+}
+
+
+.cancel{
+  float:right; 
+  padding-right: 5%;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.send{
+  float:right; 
+  margin-right: 5%;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}

@@ -1,0 +1,11 @@
+<!--pages/like/like.wxml-->
+<view class="container my-container" hidden="{{!loadingHidden}}">
+  <view class="my-item">
+    <view wx:for="{{likes}}" class="item-title" data-id='{{item.id}}' bindtap='likeDetail'>
+    <text>{{item.title}}</text>
+    </view>
+  </view>
+</view>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>

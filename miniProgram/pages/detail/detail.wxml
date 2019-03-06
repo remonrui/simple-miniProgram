@@ -1,0 +1,42 @@
+<view class="container" hidden="{{!loadingHidden}}">
+    
+    <!-- fd: film detail -->
+        <view>
+            <image src="{{detail.img}}" class="fd-cover"></image>
+        </view>
+        <view class="fd-bd">
+            <view class="fd-bd-title">项目介绍</view>
+            <view class="fd-bd-intro">{{detail.content}}</view>
+        </view>
+        <view >
+        </view>
+
+        <view class='operation'>
+            <view class="left">您的想法</view>
+            <view class="center">
+              <view wx:if="{{like == 1}}">
+                <image src='../../imgs/icon/star.png' bindtap="changLike"></image>
+              </view>
+              <view wx:else>
+                <image src='../../imgs/icon/star2.png' bindtap="changLike"></image>
+              </view>
+            </view>
+            <view class="right">
+              <image src='../../imgs/icon/comment.png' bindtap="message"></image>
+            </view>
+        </view>
+
+        <view class="section" hidden='{{!message}}'>
+          <view class="message-title">留言</view>
+          <form bindsubmit="send">
+          <input name="message" type="text" confirm-type="text" adjust-position="true" placeholder="请在这里输入" />
+          <view class="btn-area">
+            <button class="cancel"size="mini" bindtap='cancel' type='primary'>取消</button>
+            <button class="send" size="mini" type='primary' form-type="submit">留言</button>
+          </view>
+          </form>
+        </view>    
+</view>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>

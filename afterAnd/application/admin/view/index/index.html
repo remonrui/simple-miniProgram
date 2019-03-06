@@ -1,0 +1,50 @@
+{extend name="base/common"}
+
+{block name="style"}
+<!-- Toastr style -->
+<link href="/admin/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+<!-- Gritter -->
+<link href="/admin/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+{/block}
+
+{block name="page-header"}
+{/block}
+
+{block name="main"}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right">注册</span>
+                    <h5>用户数</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins"></h1>
+                    <!--<div class="stat-percent font-bold text-success"><i class="fa fa-bolt"></i></div>-->
+                    <small>{$user}</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-danger pull-right">总计</span>
+                    <h5>登录次数</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins"></h1>
+                    <!--<div class="stat-percent font-bold text-danger"><i class="fa fa-level-down"></i></div>-->
+                    <small>{$login}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    highlight_subnav("{:Url('Index/index')}");
+</script>
+{/block}

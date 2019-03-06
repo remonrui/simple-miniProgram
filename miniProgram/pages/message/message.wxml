@@ -1,0 +1,26 @@
+<!--pages/like/like.wxml-->
+<view class="container my-container" hidden="{{!loadingHidden}}">
+  <view class="my-item">
+    <view wx:for="{{messages}}" class="item-title" data-id='{{item.id}}' 
+    data-cid='{{item.c_id}}' data-index="{{index}}" bindtap='messageShow'>
+    <text>{{item.category.title}}</text>
+    <text>at：{{item.message.time}}</text>
+      <image wx:if="{{!item.show}}" src="../../imgs/icon/arrow@right1.png" ></image>
+      <image wx:else src="../../imgs/icon/arrow@right.png" ></image>
+    <view class='message' hidden='{{!item.show}}'>
+      <view>
+          <text>我：{{item.message.msg}}</text>
+      </view>
+      <view wx:if="{{item.reply}}">
+          <text>@我回复：{{item.reply}}</text>
+      </view>
+      <view wx:else>
+          <text>暂无回复</text>
+      </view>
+    </view>
+    </view>
+  </view>
+</view>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>

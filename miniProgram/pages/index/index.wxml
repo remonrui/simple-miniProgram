@@ -1,0 +1,27 @@
+<import src="../tpl/category/category-tpl.wxml"/>
+<view class='container home-container' hidden="{{!loadingHidden}}">
+  <swiper indicator-dots="true" autoplay="true" >
+    <block wx:for="{{bannerArr}}">
+      <swiper-item class="banner-item">
+        <image src="{{item.img}}" class="item-image" mode='aspectFill'/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='home-main'>
+    <view class='home-main-theme'>
+      <view class="home-main-header">案例展示</view>
+          <view class="theme-box">
+          <view wx:for="{{caseArr}}" class="theme-item">
+          <image bindtap='imgPreview' src='{{item.img}}' mode='aspectFill' data-index="{{index}}" data-list='{{item.img}}'></image>
+          </view>
+          </view>
+    </view>
+  </view>
+<view class="foods-type-box">
+        <template is="categorydetail" data="{{caseArr}}"/>
+      </view>
+</view>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>
+
